@@ -29,7 +29,8 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Thumbs <h9 style="color: greenyellow;">Up</h9> Text</th>
-
+                            <th scope="col">User</th>
+                            <th scope="col">Email</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,11 +40,17 @@
                         if ($conn->connect_error) {
                             die("Connection failed. :(" . $conn->connect_error);
                         }
-                        $sql = "SELECT id, text from Up";
+      
+                        $sql = "SELECT User.id, User.email, User.name, Up.id, Up.text, Up.user_id
+                        FROM User
+                        INNER JOIN Up ON User.id=Up.user_id";
+
                         $result = $conn->query($sql);
+
+
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                echo "<tr> <td>" . $row["id"] . "</td> <td>" . $row["text"] . "</td></tr>";
+                                echo "<tr> <td>" . $row["id"] . "</td><td>" . $row["text"] . "</td>  <td>". $row["name"] . "</td>  <td>" . $row["email"] . "</td></tr>";
                             }
                             echo "</table>";
                         } else {
@@ -63,6 +70,8 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Thumbs <h9 style="color: #ff8585;">Down</h9> Text</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Email</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,11 +81,17 @@
                         if ($conn->connect_error) {
                             die("Connection failed. :(" . $conn->connect_error);
                         }
-                        $sql = "SELECT id, text from Down";
+
+                        $sql = "SELECT User.id, User.email, User.name, Down.id, Down.text, Down.user_id
+                        FROM User
+                        INNER JOIN Down ON User.id=Down.user_id";
+
                         $result = $conn->query($sql);
+
+
                         if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr> <td>" . $row["id"] . "</td> <td>" . $row["text"] . "</td></tr>";
+                            while ($row = $result->fetch_assoc())  {
+                                echo "<tr> <td>" . $row["id"] . "</td><td>" . $row["text"] . "</td> <td>". $row["name"] . "</td> <td>" . $row["email"] . "</td></tr>";
                             }
                             echo "</table>";
                         } else {
@@ -102,44 +117,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"> </script>
 
 <script src="index.js"></script>
-
-
-<!--
-    <script src= "https://cdn.datatables.net/autofill/2.3.7/js/dataTables.autoFill.min.js"></script>
-<script src= "https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-<script src= "https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
-<script src= "https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
-<script src= "https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
-<script src= "https://cdn.datatables.net/colreorder/1.5.4/js/dataTables.colReorder.min.js"></script>
-<script src= "https://cdn.datatables.net/fixedcolumns/3.3.3/js/dataTables.fixedColumns.min.js"></script>
-<script src= "https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
-<script src= "https://cdn.datatables.net/keytable/2.6.2/js/dataTables.keyTable.min.js"></script>
-<script src= "https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-<script src= "https://cdn.datatables.net/rowgroup/1.1.3/js/dataTables.rowGroup.min.js"></script>
-<script src= "https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
-<script src= "https://cdn.datatables.net/scroller/2.0.4/js/dataTables.scroller.min.js"></script>
-<script src= "https://cdn.datatables.net/searchbuilder/1.1.0/js/dataTables.searchBuilder.min.js"></script>
-<script src= "https://cdn.datatables.net/searchpanes/1.3.0/js/dataTables.searchPanes.min.js"></script>
-<script src= "https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
-
-
-
-
-   <link rel="stylesheet" href="https://cdn.datatables.net/autofill/2.3.7/css/autoFill.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.4/css/colReorder.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.0/css/dataTables.dateTime.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.3/css/fixedColumns.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/keytable/2.6.2/css/keyTable.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.3/css/rowGroup.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.4/css/scroller.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.1.0/css/searchBuilder.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.3.0/css/searchPanes.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
-                    -->
 
 
 </html>
