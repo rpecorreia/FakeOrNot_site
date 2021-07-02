@@ -28,7 +28,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Thumbs <h9 style="color: greenyellow;">Up</h9> Text</th>
+                            <th scope="col"> <h9 style="color: #ff8585;">Fake</h9> Content</th>
                             <th scope="col">User</th>
                             <th scope="col">Email</th>
                         </tr>
@@ -41,9 +41,9 @@
                             die("Connection failed. :(" . $conn->connect_error);
                         }
       
-                        $sql = "SELECT User.id, User.email, User.name, Up.id, Up.text, Up.user_id
+                        $sql = "SELECT User.id, User.email, User.name, Fake.id, Fake.text, Fake.user_id
                         FROM User
-                        INNER JOIN Up ON User.id=Up.user_id";
+                        INNER JOIN Fake ON User.id=Fake.user_id";
 
                         $result = $conn->query($sql);
 
@@ -69,7 +69,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Thumbs <h9 style="color: #ff8585;">Down</h9> Text</th>
+                            <th scope="col"> <h9 style="color: #ebeb1e;">Questionable</h9> Content</th>
                             <th scope="col">User</th>
                             <th scope="col">Email</th>
                         </tr>
@@ -82,9 +82,9 @@
                             die("Connection failed. :(" . $conn->connect_error);
                         }
 
-                        $sql = "SELECT User.id, User.email, User.name, Down.id, Down.text, Down.user_id
+                        $sql = "SELECT User.id, User.email, User.name, Questionable.id, Questionable.text, Questionable.user_id
                         FROM User
-                        INNER JOIN Down ON User.id=Down.user_id";
+                        INNER JOIN Questionable ON User.id=Questionable.user_id";
 
                         $result = $conn->query($sql);
 
