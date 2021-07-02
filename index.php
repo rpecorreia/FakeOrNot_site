@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -15,101 +16,121 @@
 </head>
 
 <body>
-    <div class="row">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center; margin-bottom:1%;">FakeOrNot extension info</h1>
+    </div>
+  </div>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Fake content</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Questionable content</a>
+      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Other</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <div class="row">
+        <div class="col-12" >
+          <div class="table-responsive">
+            <table id="dtBasicExample" class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">
+                    <h9 style="color: #ff8585;">Fake</h9> Content
+                  </th>
+                  <th scope="col">User</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">URL</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <?php
+                $conn = mysqli_connect("localhost", "root", "root", "FakeOrNot");
+                if ($conn->connect_error) {
+                  die("Connection failed. :(" . $conn->connect_error);
+                }
+
+                $sql = "SELECT User.id, User.email, User.name, Fake.id, Fake.text, Fake.user_id, Fake.url
+                                    FROM User
+                                    INNER JOIN Fake ON User.id=Fake.user_id";
+
+                $result = $conn->query($sql);
+
+
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    echo "<tr> <td>" . $row["id"] . "</td><td>" . $row["text"] . "</td> <td>" . $row["name"] . "</td> <td>" . $row["email"] . "</td>    <td>" . "<a href= " . $row["url"] . " target='_blank' >" . $row["url"] . "</a>" . "</td></tr>";
+                  }
+                  echo "</table>";
+                } else {
+                  echo "0 results. :(";
+                }
+
+                $conn->close();
+                ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+      <div class="row">
         <div class="col-12">
-            <h1 style="text-align: center; margin-bottom:5%;">FakeOrNot extension info</h1>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-6">
-            <div class="table-responsive">
-                <table id="dtBasicExample" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col"> <h9 style="color: #ff8585;">Fake</h9> Content</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php
-                        $conn = mysqli_connect("localhost", "root", "root", "FakeOrNot");
-                        if ($conn->connect_error) {
-                            die("Connection failed. :(" . $conn->connect_error);
-                        }
-      
-                        $sql = "SELECT User.id, User.email, User.name, Fake.id, Fake.text, Fake.user_id
-                        FROM User
-                        INNER JOIN Fake ON User.id=Fake.user_id";
-
-                        $result = $conn->query($sql);
-
-
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr> <td>" . $row["id"] . "</td><td>" . $row["text"] . "</td>  <td>". $row["name"] . "</td>  <td>" . $row["email"] . "</td></tr>";
-                            }
-                            echo "</table>";
-                        } else {
-                            echo "0 results. :(";
-                        }
-
-                        $conn->close();
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="table-responsive">
+          <div class="table-responsive">
             <table id="dtBasicExample2" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col"> <h9 style="color: #ebeb1e;">Questionable</h9> Content</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">
+                    <h9 style="color: #ebeb1e;">Questionable</h9> Content
+                  </th>
+                  <th scope="col">User</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">URL</th>
+                </tr>
+              </thead>
+              <tbody>
 
-                        <?php
-                        $conn = mysqli_connect("localhost", "root", "root", "FakeOrNot");
-                        if ($conn->connect_error) {
-                            die("Connection failed. :(" . $conn->connect_error);
-                        }
+                <?php
+                $conn = mysqli_connect("localhost", "root", "root", "FakeOrNot");
+                if ($conn->connect_error) {
+                  die("Connection failed. :(" . $conn->connect_error);
+                }
 
-                        $sql = "SELECT User.id, User.email, User.name, Questionable.id, Questionable.text, Questionable.user_id
-                        FROM User
-                        INNER JOIN Questionable ON User.id=Questionable.user_id";
+                $sql = "SELECT User.id, User.email, User.name, Questionable.id, Questionable.text, Questionable.user_id, Questionable.url
+                                    FROM User
+                                    INNER JOIN Questionable ON User.id=Questionable.user_id";
 
-                        $result = $conn->query($sql);
+                $result = $conn->query($sql);
 
 
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc())  {
-                                echo "<tr> <td>" . $row["id"] . "</td><td>" . $row["text"] . "</td> <td>". $row["name"] . "</td> <td>" . $row["email"] . "</td></tr>";
-                            }
-                            echo "</table>";
-                        } else {
-                            echo "0 results. :(";
-                        }
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    echo "<tr> <td>" . $row["id"] . "</td><td>" . $row["text"] . "</td>  <td>" . $row["name"] . "</td>  <td>" . $row["email"] . "</td>    <td>" . "<a href= " . $row["url"] . " target='_blank' >" . $row["url"] . "</a>" . "</td></tr>";
+                  }
+                  echo "</table>";
+                } else {
+                  echo "0 results. :(";
+                }
 
-                        $conn->close();
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+                $conn->close();
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
+
     </div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">tab 3</div>
+  </div>
 
-
-</body>
-
-<script src="jquery-3.4.1.min.js"></script>
+  <script src="jquery-3.4.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="bootstrap.min.js"></script>
 
@@ -118,5 +139,6 @@
 
 <script src="index.js"></script>
 
+</body>
 
 </html>
