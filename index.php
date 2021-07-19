@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>FakeOrNot Info</title>
+    <title>iColabCheck Info</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap.min.css">
@@ -18,7 +18,7 @@
 <body>
   <div class="row">
     <div class="col-12">
-      <h1 style="text-align: center; margin-bottom:1%;">FakeOrNot extension info</h1>
+      <h1 style="text-align: center; margin-bottom:1%;">iColabCheck extension info</h1>
     </div>
   </div>
   <nav>
