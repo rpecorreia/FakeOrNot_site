@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>iColabCheck Info</title>
+    <title>iColabCheck</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap.min.css">
@@ -18,14 +18,19 @@
 <body>
   <div class="row">
     <div class="col-12">
-      <h1 style="text-align: center; margin-bottom:1%;">iColabCheck extension info</h1>
+      <h1 style="text-align: center; margin-bottom:1%;">iColabCheck</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+    <h6 style="color: grey; text-align: center; margin-bottom:1%;">Check your insights.</h6>
     </div>
   </div>
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Fake content</a>
       <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Questionable content</a>
-      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Other</a>
+      <!--<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Other</a> -->
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
